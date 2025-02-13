@@ -2,10 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="Index.css">
+    <script src="Index.js" defer></script>
+    <!--Cuando se usa defer, el navegador descarga el script
+     en paralelo con el análisis del documento HTML, 
+    pero difiere su ejecución hasta que el análisis del
+     documento esté completo.-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>KelvinSays</title>
 </head>
 <body>
+    <!--esta es la pagina de inicio-->
+    <div id="welcome-page">
+         <h1>Bienvenido</h1>
+        <h1>SCORE: </h1>
+        <p>¿Quién eres?</p>
+        <input type="text">
+        <button id="startbutton">START</button>
+    </div>
+    
+    <!--esta es la pagina de juego-->
+    <div id="game-page" style="display: none;">
+        <h1>SCORE:</h1>
+        <div> 
+            <button>red</button>
+            <button>yellow</button>
+            <button>blue</button>
+            <button>green</button>
+            <button id="homebutton">HOME</button>
+        </div>
+    </div>
     
 </body>
 </html>
