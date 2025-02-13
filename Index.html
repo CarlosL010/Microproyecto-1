@@ -17,21 +17,35 @@
          <h1>Bienvenido</h1>
         <h1>SCORE: </h1>
         <p>¿Quién eres?</p>
-        <input type="text">
+        <input id="nombre" type="text">
         <button id="startbutton">START</button>
+        <button id="menu">MENU</button>
     </div>
     
     <!--esta es la pagina de juego-->
     <div id="game-page" style="display: none;">
         <h1>SCORE:</h1>
-        <div> 
+        
+            <!--Al terminar el juego o durante el mismo, 
+        se debe poder volver a menú principal para iniciar otra partida 
+        (funcionalidad de reinicio).-->
             <button>red</button>
             <button>yellow</button>
             <button>blue</button>
             <button>green</button>
             <button id="homebutton">HOME</button>
-        </div>
+        
     </div>
-    
+    <div id="menupage" style="display: none;">
+        <h1>MENU</h1>
+        <label for="puntos">JUGADOR:</label><!--para enlazar puntos con las jugadas?-->
+        <p id="puntos"></p>
+        <button id="homebutton2">HOME</button>
+    </div>
+
+<!--Debe incluir un menú principal que muestre el total
+ de victorias acumuladas por los jugadores utilizando localStorage.-->
+        
+
 </body>
 </html>
