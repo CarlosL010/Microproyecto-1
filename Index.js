@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const welcomepage = document.getElementById("welcome-page");
-    const gamepage = document.getElementById("game-page");
+    const welcome = document.getElementById("welcome-page");
+    const game = document.getElementById("game-page");
     const startbtn = document.getElementById("startbutton");
     const homebtn = document.getElementById("homebutton");
     const playerNameInput = document.getElementById("player-name");
@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const clearScoresBtn = document.getElementById("clear-scores-button");
     const colorButtons = document.querySelectorAll(".color-btn");
     const startSequenceBtn = document.getElementById("start-sequence");
+    const menubtn=document.getElementById("menu")
+    const menupage=document.getElementById("menupage")
 
     let gameSequence = [];
     let playerSequence = [];
@@ -18,6 +20,11 @@ document.addEventListener('DOMContentLoaded', function() {
         game.style.display = "none";
         welcome.style.display = "block";
     });
+
+    /*menubtn.addEventListener("click",function(){
+        welcomepage.style.display="none"
+        menupage.style.display='block'
+    })*/
 
     function updateScoresMenu() {
         scoresList.innerHTML = ''; 
