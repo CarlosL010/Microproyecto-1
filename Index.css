@@ -1,0 +1,85 @@
+/* Index.css */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #302c2c;
+    display: flex; /* Usamos flexbox para centrar el contenido en toda la página */
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+    height: 100vh; /* Altura del contenedor igual a la altura de la ventana */
+    margin: 0; /* Elimina márgenes por defecto */
+
+}
+
+#game-page button {
+    margin: 5px;
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#game-page button#homebutton {
+    background-color: #ff4d4d;
+    color: white;
+    width: 100px; /* Ancho del botón */
+    height: 100px; /* Altura del botón */
+    margin-top: 10px; /* Espacio superior */
+}
+
+/* Estilo específico para centrar el botón "HOME" */
+.home-container {
+    display: flex; /* Usamos flexbox para centrar el contenido */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 50vh; /* Altura del contenedor igual a la altura de la ventana */
+}
+
+/*button container define un contenedor que usa un sistema de cuadriculas */
+
+.button-container {
+
+    display: grid;  /*crea la cuadricula*/
+    grid-template-columns: repeat(2,1fr);  /*define 2 columnas de igual tamano */
+    grid-template-rows: repeat(2,1fr); /*define 2 filas de igual tamano*/
+    gap: 10px; /*espacio entre las celdas de la cuadricula*/
+    width: 200px; /*Ancho del contenedor*/
+    margin: 0 auto; /* centra el contenedor en el eje x*/
+
+}
+
+/*.color-btn define el estilo general para los botones del juego*/
+
+.color-btn{
+    width: 100%; /*al poner 100% el ancho del boton ocupa completamente la cuadricula*/
+    height: 100px; /*Altura fija de los botones*/
+    font-size: 18px; /*Tamano del texto dentro del boton*/
+    border: 5px;/*elimina el borde del boton*/
+    border-radius: 5px; /*redondea las esquinas del bton*/
+    cursor: pointer; /*el cursor cambia a una mano al pasar por encima del btn*/
+    color: white;/*color del texto dentro de los botones*/
+    display: flex;/*se usa para centrar el contenido dentro del btn*/
+    justify-content: center;/*centra el contenido del btn en el eje x*/
+    align-items: center;/*centra el contenido en el eje y*/
+
+}
+
+.red{
+    background-color: red;
+}
+
+.yellow{
+    background-color: yellowgreen;
+}
+
+.blue{
+    background-color: blue;
+}
+
+.green{
+    background-color: green;
+
+
+}
+

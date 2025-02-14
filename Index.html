@@ -9,7 +9,7 @@
     pero difiere su ejecución hasta que el análisis del
      documento esté completo.-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KelvinSays</title>
+    <title>CarlosSays</title>
 </head>
 <body>
     <!--esta es la pagina de inicio-->
@@ -17,21 +17,32 @@
          <h1>Bienvenido</h1>
         <h1>SCORE: </h1>
         <p>¿Quién eres?</p>
-        <input type="text">
+        <input type="text" id="player-name">
         <button id="startbutton">START</button>
+        <h2>Menu de victorias</h2>
+        <ul id="scores-list"></ul>
+        <button id="clear-scores-button">Clear Scores</button>
     </div>
     
     <!--esta es la pagina de juego-->
     <div id="game-page" style="display: none;">
         <h1>SCORE:</h1>
-        <div> 
-            <button>red</button>
-            <button>yellow</button>
-            <button>blue</button>
-            <button>green</button>
+        <div class="button-container"> 
+        <button class="color-btn red">red</button>
+        <button class="color-btn yellow">yellow</button>
+        <button class="color-btn blue">blue</button>
+        <button class="color-btn green">green</button>
+        </div>
+        <div class="home-container">
             <button id="homebutton">HOME</button>
         </div>
+        
+
     </div>
     
+    
+
+
+
 </body>
 </html>
