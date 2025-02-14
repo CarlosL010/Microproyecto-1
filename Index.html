@@ -4,48 +4,39 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="Index.css">
     <script src="Index.js" defer></script>
-    <!--Cuando se usa defer, el navegador descarga el script
-     en paralelo con el análisis del documento HTML, 
-    pero difiere su ejecución hasta que el análisis del
-     documento esté completo.-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KelvinSays</title>
+    <title>CarlosSays</title>
 </head>
 <body>
-    <!--esta es la pagina de inicio-->
+    <!-- Página de inicio -->
     <div id="welcome-page">
-         <h1>Bienvenido</h1>
-        <h1>SCORE: </h1>
+        <h1>Bienvenido</h1>
+        <h1>SCORE:</h1>
         <p>¿Quién eres?</p>
-        <input id="nombre" type="text">
-        <button id="startbutton">START</button>
-        <button id="menu">MENU</button>
+        <input type="text" id="player-name">
+        <button id="startbutton" type="button">Start Game</button>
+        <h2>Menú de victorias</h2>
+        <ul id="scores-list"></ul>
+        <button id="clear-scores-button">Clear Scores</button>
     </div>
     
-    <!--esta es la pagina de juego-->
+    <!-- Página del juego -->
     <div id="game-page" style="display: none;">
-        <h1>SCORE:</h1>
-        
-            <!--Al terminar el juego o durante el mismo, 
-        se debe poder volver a menú principal para iniciar otra partida 
-        (funcionalidad de reinicio).-->
-            <button id="red">red</button>
-            <button id="yellow">yellow</button>
-            <button id="blue">blue</button>
-            <button id="green">green</button>
+        <h1>SCORE: <span id="current-score">0</span></h1>
+
+        <div class="button-container"> 
+            <button class="color-btn red" id="red">Red</button>
+            <button class="color-btn yellow" id="yellow">Yellow</button>
+            <button class="color-btn blue" id="blue">Blue</button>
+            <button class="color-btn green" id="green">Green</button>
+        </div>
+
+        <button id="start-sequence">Start Sequence</button>
+
+        <div class="home-container">
             <button id="homebutton">HOME</button>
-        
+        </div>
     </div>
-    <div id="menupage" style="display: none;">
-        <h1>MENU</h1>
-        <label for="puntos">JUGADOR:</label><!--para enlazar puntos con las jugadas?-->
-        <p id="puntos">0</p>
-        <button id="homebutton2">HOME</button>
-    </div>
-
-<!--Debe incluir un menú principal que muestre el total
- de victorias acumuladas por los jugadores utilizando localStorage.-->
-        
-
 </body>
 </html>
+
