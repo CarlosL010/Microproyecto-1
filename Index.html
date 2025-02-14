@@ -9,7 +9,7 @@
     pero difiere su ejecución hasta que el análisis del
      documento esté completo.-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KelvinSays</title>
+    <title>CarlosSays</title>
 </head>
 <body>
     <!--esta es la pagina de inicio-->
@@ -17,35 +17,39 @@
          <h1>Bienvenido</h1>
         <h1>SCORE: </h1>
         <p>¿Quién eres?</p>
-        <input id="nombre" type="text">
+        <input id="nombre" type="text" id="player-name">
         <button id="startbutton">START</button>
+        <h2>Menu de victorias</h2>
+        <ul id="scores-list"></ul>
+        <button id="clear-scores-button">Clear Scores</button>
         <button id="menu">MENU</button>
     </div>
     
     <!--esta es la pagina de juego-->
     <div id="game-page" style="display: none;">
         <h1>SCORE:</h1>
-        
-            <!--Al terminar el juego o durante el mismo, 
-        se debe poder volver a menú principal para iniciar otra partida 
-        (funcionalidad de reinicio).-->
-            <button id="red">red</button>
-            <button id="yellow">yellow</button>
-            <button id="blue">blue</button>
-            <button id="green">green</button>
+        <div class="button-container"> 
+        <button class="color-btn red">red</button>
+        <button class="color-btn yellow">yellow</button>
+        <button class="color-btn blue">blue</button>
+        <button class="color-btn green">green</button>
+        </div>
+        <div class="home-container">
             <button id="homebutton">HOME</button>
         
     </div>
+        
+
     <div id="menupage" style="display: none;">
         <h1>MENU</h1>
         <label for="puntos">JUGADOR:</label><!--para enlazar puntos con las jugadas?-->
         <p id="puntos">0</p>
         <button id="homebutton2">HOME</button>
     </div>
+    
+    
 
-<!--Debe incluir un menú principal que muestre el total
- de victorias acumuladas por los jugadores utilizando localStorage.-->
-        
+
 
 </body>
 </html>
