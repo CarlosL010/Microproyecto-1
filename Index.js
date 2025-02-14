@@ -6,18 +6,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const playerNameInput = document.getElementById("player-name");
     const scoresList = document.getElementById("scores-list");
     const clearScoresBtn = document.getElementById("clear-scores-button");
+    const colorButtons = document.querySelectorAll(".color-btn");
+    const startSequenceBtn = document.getElementById("start-sequence");
 
-    startbtn.addEventListener("click", function() {
-        welcome.style.display = "none";
-        game.style.display = "block";
-    });
+    let gameSequence = [];
+    let playerSequence = [];
+    let playerName = "";
+    let level = 0;
 
     homebtn.addEventListener("click", function() {
         game.style.display = "none";
         welcome.style.display = "block";
     });
 
-    // Función para actualizar el menú de victorias
     function updateScoresMenu() {
         scoresList.innerHTML = ''; 
         for (let i = 0; i < localStorage.length; i++) {
@@ -29,54 +30,96 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-
-    // Evento de clic para el botón de inicio del juego
-    startbtn.addEventListener("click", function() {
-        const playerName = playerNameInput.value.trim(); 
-        console.log("Nombre del jugador:", playerName); 
+    startbtn.addEventListener("click", function(event) {
+        event.preventDefault();
+        playerName = playerNameInput.value.trim(); 
         if (!playerName) {
             alert("Por favor, ingresa tu nombre."); 
-            console.log("No se ingresó nombre. Se muestra alerta."); 
             return; 
         }
-
-        console.log("Nombre ingresado correctamente. Pasando a la página del juego."); 
 
         welcome.style.display = "none"; 
         game.style.display = "block"; 
 
-        // Inicializa el puntaje del jugador en localStorage si no existe
         if (!localStorage.getItem(playerName)) {
             localStorage.setItem(playerName, '0');
         }
     });
 
-    // Evento de clic para el botón "HOME" que regresa a la página de bienvenida
     homebtn.addEventListener("click", function() {
         game.style.display = "none"; 
         welcome.style.display = "block"; 
         updateScoresMenu(); 
     });
 
-    // Evento de clic para el botón "Clear Scores" que borra todos los datos de localStorage
     clearScoresBtn.addEventListener("click", function() {
         localStorage.clear(); 
         updateScoresMenu(); 
         alert("Todos los puntajes han sido borrados."); 
     });
 
-    // Función para actualizar el puntaje del jugador en localStorage
-    function updatePlayerScore(playerName) {
+    function updatePlayerScore() {
         let currentScore = parseInt(localStorage.getItem(playerName)); 
         localStorage.setItem(playerName, (currentScore + 1).toString()); 
     }
 
-    
-    
+    function getRandomColor() {
+        const colors = ["red", "blue", "green", "yellow"];
+        return colors[Math.floor(Math.random() * colors.length)];
+    }
 
-    // Actualiza el menú de victorias cuando se carga la página
+    function playSequence() {
+        let delay = 1000;
+        gameSequence.forEach((color, index) => {
+            setTimeout(() => {
+                let button = document.getElementById(color);
+                button.classList.add("active");
+                setTimeout(() => button.classList.remove("active"), 500);
+            }, delay * (index + 1));
+        });
+    }
+
+    function checkPlayerInput() {
+        for (let i = 0; i < playerSequence.length; i++) {
+            if (playerSequence[i] !== gameSequence[i]) {
+                alert("Juego terminado. Tu puntuación: " + level);
+                gameSequence = [];
+                playerSequence = [];
+                level = 0;
+                return;
+            }
+        }
+        if (playerSequence.length === gameSequence.length) {
+            updatePlayerScore();
+            level++;
+            playerSequence = [];
+            setTimeout(nextRound, 1000);
+        }
+    }
+
+    function nextRound() {
+        gameSequence.push(getRandomColor());
+        playSequence();
+    }
+
+    colorButtons.forEach(button => {
+        button.addEventListener("click", function() {
+            let color = this.id;
+            playerSequence.push(color);
+            checkPlayerInput();
+        });
+    });
+
+    startSequenceBtn.addEventListener("click", function() {
+        gameSequence = [];
+        playerSequence = [];
+        level = 0;
+        nextRound();
+    });
+
     updateScoresMenu();
 });
+
 
 
 

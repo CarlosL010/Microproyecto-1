@@ -11,6 +11,10 @@ body {
 
 }
 
+.color-btn.active {
+    opacity: 0.5;
+}
+
 #game-page button {
     margin: 5px;
     padding: 10px;
