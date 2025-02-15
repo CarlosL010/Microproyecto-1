@@ -69,7 +69,34 @@ h1, p, h2, ul {
     justify-content: center; /* centra el contenido del btn en el eje x */
     align-items: center; /* centra el contenido en el eje y */
 }
-
+.color-btn:active{
+    opacity: 0.5;
+}
+#startbutton, #clear-scores-button {
+    font-family: 'Press Start 2P', cursive;
+    background-color: white;
+    font-size: 16px; /* Ajusta el tamaño de la fuente según sea necesario */
+    padding: 10px 20px; /* Ajusta el relleno según sea necesario */
+    border: 2px solid black; /* Ajusta el borde según sea necesario */
+    border-radius: 5px; /* Ajusta el radio del borde según sea necesario */
+    cursor: pointer;
+    display: flex; /* Se usa para centrar el contenido dentro del botón */
+    justify-content: center; /* Centra el contenido del botón en el eje x */
+    align-items: center; /* Centra el contenido en el eje y */
+}
+.input-button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; /* Espacio entre el input y el botón */
+}
+#clear-scores-button {
+    display: inline-block;
+    text-align: center;
+}
+#start-sequence {
+    font-family: 'Press Start 2P', cursive;
+}
 .red {
     background-color: red;
 }

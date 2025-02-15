@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const welcome = document.getElementById("welcome-page");
     const game = document.getElementById("game-page");
     const startbtn = document.getElementById("startbutton");
@@ -8,66 +8,66 @@ document.addEventListener('DOMContentLoaded', function() {
     const clearScoresBtn = document.getElementById("clear-scores-button");
     const colorButtons = document.querySelectorAll(".color-btn");
     const startSequenceBtn = document.getElementById("start-sequence");
-    const menubtn=document.getElementById("menu")
-    const menupage=document.getElementById("menupage")
+    const menubtn = document.getElementById("menu");
+    const menupage = document.getElementById("menupage");
 
     let gameSequence = [];
     let playerSequence = [];
     let playerName = "";
     let level = 0;
 
-    homebtn.addEventListener("click", function() {
+    homebtn.addEventListener("click", function () {
         game.style.display = "none";
         welcome.style.display = "block";
     });
 
-    /*menubtn.addEventListener("click",function(){
-        welcomepage.style.display="none"
-        menupage.style.display='block'
-    })*/
-
     function updateScoresMenu() {
-        scoresList.innerHTML = ''; 
+        scoresList.innerHTML = '';
         for (let i = 0; i < localStorage.length; i++) {
-            const key = localStorage.key(i); 
-            const score = localStorage.getItem(key); 
-            const listItem = document.createElement('li'); 
-            listItem.textContent = `${key}: ${score} victorias`; 
-            scoresList.appendChild(listItem); 
+            const key = localStorage.key(i);
+            const score = localStorage.getItem(key);
+            const listItem = document.createElement('li');
+            listItem.textContent = `${key}: ${score} puntos`;
+            scoresList.appendChild(listItem);
         }
     }
 
-    startbtn.addEventListener("click", function(event) {
+    document.getElementById('startbutton').addEventListener('click', function () {
+        let audio = document.getElementById('sonido');
+        audio.play();
+    });
+
+    startbtn.addEventListener("click", function (event) {
         event.preventDefault();
-        playerName = playerNameInput.value.trim(); 
+        playerName = playerNameInput.value.trim();
         if (!playerName) {
-            alert("Por favor, ingresa tu nombre."); 
-            return; 
+            alert("Por favor, ingresa tu nombre.");
+            return;
         }
 
-        welcome.style.display = "none"; 
-        game.style.display = "block"; 
+        welcome.style.display = "none";
+        game.style.display = "block";
 
         if (!localStorage.getItem(playerName)) {
             localStorage.setItem(playerName, '0');
         }
     });
 
-    homebtn.addEventListener("click", function() {
-        game.style.display = "none"; 
-        welcome.style.display = "block"; 
-        updateScoresMenu(); 
+    homebtn.addEventListener("click", function () {
+        game.style.display = "none";
+        welcome.style.display = "block";
+        updateScoresMenu();
     });
 
-    clearScoresBtn.addEventListener("click", function() {
-        localStorage.clear(); 
-        updateScoresMenu(); 
-        alert("Todos los puntajes han sido borrados."); 
+    clearScoresBtn.addEventListener("click", function () {
+        localStorage.clear();
+        updateScoresMenu();
+        alert("Todos los puntajes han sido borrados.");
     });
 
     function updatePlayerScore() {
-        let currentScore = parseInt(localStorage.getItem(playerName)); 
-        localStorage.setItem(playerName, (currentScore + 1).toString()); 
+        let currentScore = parseInt(localStorage.getItem(playerName));
+        localStorage.setItem(playerName, (currentScore + 1).toString());
     }
 
     function getRandomColor() {
@@ -80,8 +80,12 @@ document.addEventListener('DOMContentLoaded', function() {
         gameSequence.forEach((color, index) => {
             setTimeout(() => {
                 let button = document.getElementById(color);
+                let audio = document.getElementById(`${color}-sound`);
                 button.classList.add("active");
-                setTimeout(() => button.classList.remove("active"), 500);
+                audio.play();
+                setTimeout(() => {
+                    button.classList.remove("active");
+                }, 800);  // Aumenté el tiempo aquí para asegurarme de que el sonido y el color se sincronicen.
             }, delay * (index + 1));
         });
     }
@@ -110,14 +114,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     colorButtons.forEach(button => {
-        button.addEventListener("click", function() {
+        button.addEventListener("click", function () {
             let color = this.id;
+            let audio = document.getElementById(`${color}-sound`);
             playerSequence.push(color);
+            audio.play();
             checkPlayerInput();
         });
     });
 
-    startSequenceBtn.addEventListener("click", function() {
+    startSequenceBtn.addEventListener("click", function () {
         gameSequence = [];
         playerSequence = [];
         level = 0;
@@ -126,14 +132,3 @@ document.addEventListener('DOMContentLoaded', function() {
 
     updateScoresMenu();
 });
-
-
-
-
-
-
-
-
-
-
-
