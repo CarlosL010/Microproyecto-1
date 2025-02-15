@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!localStorage.getItem(playerName)) {
             localStorage.setItem(playerName, '0');
         }
+        document.getElementById("current-score").textContent = "0";
     });
 
     homebtn.addEventListener("click", function () {
@@ -65,6 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
         alert("Todos los puntajes han sido borrados.");
     });
 
+    /**esta hay que borrarla */
     function updatePlayerScore() {
         let currentScore = parseInt(localStorage.getItem(playerName));
         localStorage.setItem(playerName, (currentScore + 1).toString());
@@ -94,15 +96,29 @@ document.addEventListener('DOMContentLoaded', function () {
         for (let i = 0; i < playerSequence.length; i++) {
             if (playerSequence[i] !== gameSequence[i]) {
                 alert("Juego terminado. Tu puntuación: " + level);
+                
+                // Obtener el récord actual del jugador
+                let record = parseInt(localStorage.getItem(playerName)) || 0;
+    
+                // Si la puntuación de la partida es mayor que el récord, actualizarlo
+                if (level > record) {
+                    localStorage.setItem(playerName, level.toString());
+                }
+    
+                // Reiniciar el puntaje actual en pantalla
+                document.getElementById("current-score").textContent = "0";
+    
                 gameSequence = [];
                 playerSequence = [];
                 level = 0;
                 return;
             }
         }
+    
+        // Si la secuencia es correcta, aumentar puntuación en la partida
         if (playerSequence.length === gameSequence.length) {
-            updatePlayerScore();
-            level++;
+            level++; 
+            document.getElementById("current-score").textContent = level; // Actualiza el score en pantalla
             playerSequence = [];
             setTimeout(nextRound, 1000);
         }
