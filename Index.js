@@ -28,29 +28,34 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function updateScoresMenu() {
         scoresList.innerHTML = ''; 
-        for (let i = 0; i < localStorage.length; i++) {
-            const key = localStorage.key(i); 
-            const score = localStorage.getItem(key); 
-            const listItem = document.createElement('li'); 
-            listItem.textContent = `${key}: ${score} victorias`; 
-            scoresList.appendChild(listItem); 
-        }
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i); 
+        const score = localStorage.getItem(key); 
+        const listItem = document.createElement('li'); 
+        listItem.textContent = `${key}: ${score} puntos`; 
+        scoresList.appendChild(listItem); 
+    }
     }
 
     startbtn.addEventListener("click", function(event) {
         event.preventDefault();
         playerName = playerNameInput.value.trim(); 
+    
         if (!playerName) {
-            alert("Por favor, ingresa tu nombre."); 
-            return; 
+            alert("Por favor, ingresa tu nombre.");
+            return;
         }
-
-        welcome.style.display = "none"; 
-        game.style.display = "block"; 
-
+    
+        welcome.style.display = "none";
+        game.style.display = "block";
+    
+        // Si el jugador es nuevo, su récord empieza en 0
         if (!localStorage.getItem(playerName)) {
-            localStorage.setItem(playerName, '0');
+            localStorage.setItem(playerName, "0");
         }
+    
+        // Mostrar el puntaje actual en pantalla (0 al inicio de la partida)
+        document.getElementById("current-score").textContent = "0";
     });
 
     homebtn.addEventListener("click", function() {
@@ -65,10 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
         alert("Todos los puntajes han sido borrados."); 
     });
 
-    function updatePlayerScore() {
-        let currentScore = parseInt(localStorage.getItem(playerName)); 
-        localStorage.setItem(playerName, (currentScore + 1).toString()); 
-    }
+    
 
     function getRandomColor() {
         const colors = ["red", "blue", "green", "yellow"];
@@ -90,21 +92,36 @@ document.addEventListener('DOMContentLoaded', function() {
         for (let i = 0; i < playerSequence.length; i++) {
             if (playerSequence[i] !== gameSequence[i]) {
                 alert("Juego terminado. Tu puntuación: " + level);
+                
+                // Obtener el récord actual del jugador
+                let record = parseInt(localStorage.getItem(playerName)) || 0;
+    
+                // Si la puntuación de la partida es mayor que el récord, actualizarlo
+                if (level > record) {
+                    localStorage.setItem(playerName, level.toString());
+                }
+    
+                // Reiniciar el puntaje actual en pantalla
+                document.getElementById("current-score").textContent = "0";
+    
                 gameSequence = [];
                 playerSequence = [];
                 level = 0;
                 return;
             }
         }
+    
+        // Si la secuencia es correcta, aumentar puntuación en la partida
         if (playerSequence.length === gameSequence.length) {
-            updatePlayerScore();
-            level++;
+            level++; 
+            document.getElementById("current-score").textContent = level; // Actualiza el score en pantalla
             playerSequence = [];
             setTimeout(nextRound, 1000);
         }
     }
 
     function nextRound() {
+        
         gameSequence.push(getRandomColor());
         playSequence();
     }
