@@ -57,6 +57,8 @@ document.addEventListener('DOMContentLoaded', function () {
     homebtn.addEventListener("click", function () {
         game.style.display = "none";
         welcome.style.display = "block";
+        let audio = document.getElementById('homesound');
+        audio.play();
         updateScoresMenu();
     });
 
