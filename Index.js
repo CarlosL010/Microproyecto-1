@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
             scoresList.appendChild(listItem);
         }
     }
-
+    
     document.getElementById('startbutton').addEventListener('click', function () {
         let audio = document.getElementById('sonido');
         audio.play();
@@ -66,11 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
         alert("Todos los puntajes han sido borrados.");
     });
 
-    /**esta hay que borrarla */
-    function updatePlayerScore() {
-        let currentScore = parseInt(localStorage.getItem(playerName));
-        localStorage.setItem(playerName, (currentScore + 1).toString());
-    }
+    
 
     function getRandomColor() {
         const colors = ["red", "blue", "green", "yellow"];
@@ -95,7 +91,11 @@ document.addEventListener('DOMContentLoaded', function () {
     function checkPlayerInput() {
         for (let i = 0; i < playerSequence.length; i++) {
             if (playerSequence[i] !== gameSequence[i]) {
+                let audio = document.getElementById('terminado');
+                audio.play();
                 alert("Juego terminado. Tu puntuación: " + level);
+                   
+            
                 
                 // Obtener el récord actual del jugador
                 let record = parseInt(localStorage.getItem(playerName)) || 0;

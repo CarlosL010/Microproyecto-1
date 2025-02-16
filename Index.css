@@ -29,6 +29,7 @@ h1, p, h2, ul {
 }
 
 #game-page button#homebutton, #welcome-page button#startbutton {
+    
     background-color: #ff4d4d;
     color: white;
     width: 100px; /* Ancho del botón */
@@ -113,3 +114,21 @@ h1, p, h2, ul {
     background-color: green;
 }
 
+@media(max-width:600px){
+    #game-page{
+        padding: 20px;
+    }
+    .button-container {
+        flex-direction:row; /* Cambia la dirección a columna para dispositivos móviles */
+        gap: 5px; /* Reduce el espacio entre los botones */
+    }
+    .color-btn {
+        width: 60px; /* Ajusta el ancho de los botones */
+        height: 60px; /* Ajusta la altura de los botones */
+        font-size: 14px; /* Ajusta el tamaño del texto dentro del botón */
+    }
+    #welcome-page{
+        margin-bottom: 250px;
+        
+    }
+}
